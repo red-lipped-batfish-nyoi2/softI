@@ -14,7 +14,7 @@ function PreviousSession() {
         let files = [];
         res.forEach((f, idx) => {
           files.push(
-            `https://softi-nyoi2.s3.amazonaws.com/record_${idx + 1}.webm`
+            `https://softi-iteration.s3.amazonaws.com/record_${idx + 1}.webm`
           );
         });
         setFiles(files);

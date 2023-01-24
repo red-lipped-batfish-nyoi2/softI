@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+//createSlice creates your actions, as well as reducers
+//reducers: functions that take the current state and an action as arguments, and return a new state
+
+
 const initialState = {
   questions: [
     "Tell me about yourself?",

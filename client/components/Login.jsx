@@ -11,6 +11,7 @@ export default function Login() {
       <h1 className="login-title" >Please Log In</h1>
       <form>
         <div className="container">
+          //updates the state.isLoggedIn to true
           <button className="login-btn" onClick={() => dispatch(userLogin())}>Login</button>
         </div>
       </form>
