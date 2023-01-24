@@ -18,7 +18,7 @@ videoControllers.uploadFile = async (req, res, next) => {
   }
   const getNum = () => {
     return new Promise((resolve, reject) => {
-      s3.listObjects({ Bucket: "softi-nyoi2" }, function (err, result) {
+      s3.listObjects({ Bucket: "softi-iteration" }, function (err, result) {
         if (err) reject(err);
         if (result) resolve(result.Contents.length);
       });
@@ -33,14 +33,15 @@ videoControllers.uploadFile = async (req, res, next) => {
   file.originalname = `${req.query.title}_${req.query.image}.webm`;
   const fileStream = fs.createReadStream(file.path);
   const params = {
-    Bucket: "softi-nyoi2",
+    Bucket: "softi-iteration",
+    //once users are created, replace record with ${username}
     Key: `record_${num}.webm`,
     Body: fileStream,
   };
   await s3.upload(params, function (err, data) {
     if (err) {
       next({
-        log: "error while upload image to s3",
+        log: "error while uploading image to s3",
         status: 500,
         message: err,
       });
@@ -52,7 +53,7 @@ videoControllers.uploadFile = async (req, res, next) => {
 
 videoControllers.fetchFiles = async (req, res, next) => {
   const params = {
-    Bucket: "softi-nyoi2",
+    Bucket: "softi-iteration",
   };
 
   const getNum = () => {
@@ -66,7 +67,7 @@ videoControllers.fetchFiles = async (req, res, next) => {
 
   const getObject = (i) => {
     const objParam = {
-      Bucket: "softi-nyoi2",
+      Bucket: "softi-iteration",
       Key: "record_" + i + ".webm",
     };
 
