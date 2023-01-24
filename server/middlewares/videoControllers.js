@@ -13,7 +13,6 @@ videoControllers.uploadFile = async (req, res, next) => {
   if (req.file == null) {
     return res.status(400).json({ message: "file not sent by the client" });
   }
-  console.log(req.file)
   const getNum = () => {
     return new Promise((resolve, reject) => {
       s3.listObjects({ Bucket: "softi-nyoi2" }, function (err, result) {
