@@ -1,7 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-
 module.exports = {
   // entry: path.resolve(__dirname, "./client/index.js"),
   entry: ["./client/index.js"],
@@ -30,7 +29,7 @@ module.exports = {
         test: /\.(png)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
           },
         ],
       },
@@ -44,6 +43,7 @@ module.exports = {
       directory: path.resolve(__dirname, "./build"),
       publicPath: "/",
     },
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
