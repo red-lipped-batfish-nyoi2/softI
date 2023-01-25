@@ -16,12 +16,9 @@ const initialState = {
     "Dicuss any positive contributions you've made to your previous organization, be as specific as possible with real world examples.",
   ],
   questionSet: [],
-  // isLoggedIn: false,
+  isLoggedIn: false,
   isSessionStarted: false,
-  user: {
-    username: '',
-    password: ''
-  },
+  user: {},
   currentQuestion: 0
 };
 //createSlice is a function that accepts an initialState (currently the array of int questions), 
@@ -31,9 +28,12 @@ export const questionSlice = createSlice({
   name: "question",
   initialState,
   reducers: {
+    // display: (state, action) => {
+    //   console.log(action);
+    //   // console.log(state.value);
+    // },
     userLogin: (state, action) => {
-      const {payload} = param;
-      state.user = Object.assign(state.user, payload);
+      state.isLoggedIn = true;
     },
     startSession: (state, action) => {
       state.isSessionStarted = true;
@@ -62,7 +62,6 @@ export function pickQuestion(allQuestions) {
   return set;
 }
 
-//generates an action creator that uses the name of the user 
 export const { display, userLogin, startSession, nextQuestion, endSession } = questionSlice.actions;
 
 export default questionSlice.reducer;
