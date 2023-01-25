@@ -60,6 +60,7 @@ export default function Login() {
               Login
             </button>
         </form>
+        <Link to='/signup'> <p style = {{color: 'white'}}>Don't have an account? Sign up here</p> </Link>
       </div>
     </div>
   );
