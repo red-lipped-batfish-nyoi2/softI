@@ -1,8 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-//createSlice creates your actions, as well as reducers
-//reducers: functions that take the current state and an action as arguments, and return a new state
-
 
 const initialState = {
   questions: [
@@ -27,10 +24,10 @@ export const questionSlice = createSlice({
   name: "question",
   initialState,
   reducers: {
-    display: (state, action) => {
-      console.log(action);
-      // console.log(state.value);
-    },
+    // display: (state, action) => {
+    //   console.log(action);
+    //   // console.log(state.value);
+    // },
     userLogin: (state, action) => {
       state.isLoggedIn = true;
     },
