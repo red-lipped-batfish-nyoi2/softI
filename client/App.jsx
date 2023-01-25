@@ -15,7 +15,6 @@ function App() {
 
   return (
     <div id='main'>
-      //define routes
       <Routes>
         {/* //default route is the login screen */}
         <Route path='/' element={<Login />} />
