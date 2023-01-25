@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
 const initialState = {
   questions: [
     "Tell me about yourself?",
@@ -23,10 +24,10 @@ export const questionSlice = createSlice({
   name: "question",
   initialState,
   reducers: {
-    display: (state, action) => {
-      console.log(action);
-      // console.log(state.value);
-    },
+    // display: (state, action) => {
+    //   console.log(action);
+    //   // console.log(state.value);
+    // },
     userLogin: (state, action) => {
       state.isLoggedIn = true;
     },
