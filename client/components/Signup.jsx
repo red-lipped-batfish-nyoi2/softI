@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Link, redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { userLogin } from "../redux/questionSlice";
 import logo from "../img/logo.png";
 import "../styles.css";
 
-export default function Login() {
+export default function Signup() {
   const dispatch = useDispatch();
   const [user, setUser] = useState({
     username: '',
@@ -15,21 +14,20 @@ export default function Login() {
   const userSetter = (event) => {
     const { value, name } = event.target; 
     setUser(Object.assign(user, {[name]: value}));
-    console.log(user);
   };
 
-  const verifyUser = (e) => {
+  const createUser = (e) => {
     e.preventDefault(); 
-    fetch('/login', {
+    fetch('/usersignup', {
         method: 'POST',
         body: JSON.stringify({ username, password })
       })
         .then((data)=>data.json())
         .then((data)=>{
-            if (data.loggedIn === true){
-              return redirect('/home');
+            if (data.userCreated === true){
+              return redirect('/login');
             }else{
-                alert("Wrong username or password. Please try again.")
+                alert("Error signing up. Please try again")
             }
         })
       }
@@ -39,7 +37,7 @@ export default function Login() {
       <div className='loginBox'>
         <h1>
           <img id='logo' src={logo}></img>
-          Softi
+          Signup with Softi
         </h1>
         <form id='loginForm' method = 'post'>
           <input
@@ -56,11 +54,10 @@ export default function Login() {
             placeholder='Password'
             onChange = {(event) => {userSetter(event)}}
             required></input>
-            <button className='login-btn' onClick={(e) => {verifyUser(e)}}>
-              Login
+            <button className='login-btn' onClick={(e) => {createUser(e)}}>
+             Signup
             </button>
         </form>
-        <Link to='/signup'> <p style = {{color: 'white'}}>Don't have an account? Sign up here</p> </Link>
       </div>
     </div>
   );
