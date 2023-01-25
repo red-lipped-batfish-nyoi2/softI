@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import Home from './components/Home.jsx';
-import { useSelector } from 'react-redux';
-import Login from './components/Login.jsx';
-import './styles.css';
-
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/Home.jsx";
+import { useSelector } from "react-redux";
+import Login from "./components/Login.jsx";
+import "./styles.css";
 
 function App() {
-
   //link to state global
   //access to is logged in
 
@@ -15,13 +14,18 @@ function App() {
   const loginStatus = useSelector((state) => state.question.isLoggedIn);
 
   return (
-    <div id="main">
+    <div id='main'>
+      //define routes
+      <Routes>
+        {/* //default route is the login screen */}
+        <Route path='/' element={<Login />} />
+        {/* after authenticated, we can route to home */}
+        <Route path='/home' element={<Home />} />
+      </Routes>
       {/* <p>Login Status: {String(loginStatus)}</p> */}
-      {loginStatus ? <Home /> : <Login />}
+      {/* {loginStatus ? <Home /> : <Login />} */}
     </div>
   );
 }
-
-
 
 export default App;
