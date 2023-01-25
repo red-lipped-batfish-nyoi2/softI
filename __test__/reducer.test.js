@@ -1,5 +1,6 @@
 import reducer from "../client/redux/questionSlice";
 import { display, userLogin, startSession, nextQuestion, endSession } from "../client/redux/questionSlice";
+import { pickQuestion } from "../client/redux/questionSlice"
 
 const initialState = {
   questions: [
@@ -18,17 +19,6 @@ const initialState = {
   isSessionStarted: false,
   user: {},
   currentQuestion: 0
-}
-
-function pickQuestion(allQuestions) {
-  let set = [];
-  if (allQuestions.length < 3) return "not enough questions stored";
-  for (let i = 0; i <= 2; i++) {
-    const random = Math.floor(Math.random() * allQuestions.length);
-    set.push(allQuestions[random]);
-    allQuestions.splice(random, 1);
-  }
-  return set;
 }
 
 //tests start
@@ -64,6 +54,13 @@ describe('Testing redux reducers', () => {
 
   })
 })
+
+  describe('Testing reducer helper function', () => {
+    test('should return "not enough question stored" if passed less than three questions', () => {
+      const result = pickQuestion(['1', '2']);
+      expect(result).toEqual("not enough questions stored")
+    })
+  })
 
 
 

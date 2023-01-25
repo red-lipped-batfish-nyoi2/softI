@@ -47,7 +47,7 @@ export const questionSlice = createSlice({
 });
 
 
-function pickQuestion(allQuestions) {
+export function pickQuestion(allQuestions) {
   let set = [];
   if (allQuestions.length < 3) return "not enough questions stored";
   for (let i = 0; i <= 2; i++) {
