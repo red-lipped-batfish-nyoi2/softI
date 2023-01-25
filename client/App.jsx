@@ -16,7 +16,6 @@ function App() {
 
   return (
     <div id="main">
-      <img src="client/img/login.png" />
       {/* <p>Login Status: {String(loginStatus)}</p> */}
       {loginStatus ? <Home /> : <Login />}
     </div>
