@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+//reducers: functions that take the current state and an action as arguments, and return a new state
 
+//Stretch feature: question bank from API
 const initialState = {
   questions: [
     "Tell me about yourself?",
@@ -19,7 +21,9 @@ const initialState = {
   user: {},
   currentQuestion: 0
 };
-
+//createSlice is a function that accepts an initialState (currently the array of int questions), 
+//an object of reducer functions (changes the state), and a 'slice name'
+//automatically generates action creators and action types (new standard approach from the switch statements used in Redux unit)
 export const questionSlice = createSlice({
   name: "question",
   initialState,
