@@ -1,42 +1,64 @@
-import React from 'react'
-import {useSelector, useDispatch } from "react-redux"
-import { userLogin } from "../redux/questionSlice"
-import logo from '../img/logo.png'
-import '../styles.css'
+import React, { useState } from "react";
+import { Link, redirect } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import logo from "../img/logo.png";
+import "../styles.css";
 
-export default function Login() {
-  // const dispatch = useDispatch()
-
+export default function Signup() {
+  const dispatch = useDispatch();
   const [user, setUser] = useState({
-    username: '', 
-    pasword: ''
-  });
+    username: '',
+    password: ''
+  }); 
 
-  const userSetter = (e) => {
-    const {value, name} = e.target; 
-    setUser(Object.assign(user, {[name] : value})); 
-  }
+  const userSetter = (event) => {
+    const { value, name } = event.target; 
+    setUser(Object.assign(user, {[name]: value}));
+  };
 
-//   const createNewUser = (e) => {
-//     fetch('/signup', {
-//         method: 
-//     })
-//   }
-
+  const createUser = (e) => {
+    e.preventDefault(); 
+    fetch('/usersignup', {
+        method: 'POST',
+        body: JSON.stringify({ username, password })
+      })
+        .then((data)=>data.json())
+        .then((data)=>{
+            if (data.userCreated === true){
+              return redirect('/login');
+            }else{
+                alert("Error signing up. Please try again")
+            }
+        })
+      }
 
   return (
-    <div className="login">
-      <div className = 'loginBox'>
-      <h1> <img id = 'logo' src = {logo}></img>Signup </h1>
-      <form id = 'loginForm' method = "post">
-        <input type = "text" name = 'username' className = 'userInfo' placeholder='Username' 
-        onChange = {(event) => {userSetter(event)}} required></input>
-        <input type = "password" name = 'password' className = 'userInfo' placeholder='Password' 
-        onChange = {(event) => {userSetter(event)}} required></input>
-        <button className="login-btn" onClick={createNewUser}>Signup</button>
-      </form>
-      <p> Don't have an account? Click here to signup </p>
+    <div className='login'>
+      <div className='loginBox'>
+        <h1>
+          <img id='logo' src={logo}></img>
+          Signup with Softi
+        </h1>
+        <form id='loginForm' method = 'post'>
+          <input
+            type='text'
+            name = 'username'
+            className='userInfo'
+            placeholder='Username'
+            onChange = {(event) => {userSetter(event)}}
+            required></input>
+          <input
+            type='password'
+            name = 'password'
+            className='userInfo'
+            placeholder='Password'
+            onChange = {(event) => {userSetter(event)}}
+            required></input>
+            <button className='login-btn' onClick={(e) => {createUser(e)}}>
+             Signup
+            </button>
+        </form>
       </div>
-    </div >
-  )
+    </div>
+  );
 }
