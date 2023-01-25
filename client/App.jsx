@@ -7,8 +7,11 @@ import './styles.css';
 
 function App() {
 
-  // link to state global
+  //link to state global
   //access to is logged in
+
+  //useSelector: mapsToProps equivalent - takes in a function argument that returns the part of the state you want
+  //passes down state properties as props
   const loginStatus = useSelector((state) => state.question.isLoggedIn);
 
   return (
