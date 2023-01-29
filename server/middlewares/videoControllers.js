@@ -2,9 +2,9 @@ const fs = require("fs");
 const AWS = require("aws-sdk");
 
 const s3 = new AWS.S3({
-  accessKeyId: "AKIAULV76D667P5FRC7R",
-  secretAccessKey: "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",
-  region: "us-east-1",
+  accessKeyId: ACCESS KEY HERE,
+  secretAccessKey: SECRET KEY HERE,
+  region: REGION HERE,
 });
 
 const videoControllers = {};
